@@ -2,6 +2,9 @@
 # Edit at https://www.gitignore.io/?templates=c++,clion,emacs,cmake
 # Sourced from: https://gitlab.version.fz-juelich.de/jupedsim/jpsvis/commit/ff7c23394b85054789e7411e7d8e3c7e481cacc8
 
+### Added Not From Above Template ###
+build/*
+
 ### C++ ###
 # Prerequisites
 *.d
