@@ -21,4 +21,4 @@ add_subdirectory(PooleEngine)   #IMPORTANT Note: Add Library First
 add_subdirectory(Sandbox) 	#                Then exe after for dependancies
 
 # Setup our project as the startup project for Visual so that people don't need to do it manually
-set_directory_properties(PROPERTY VS_STARTUP_PROJECT Sandbox)
+set_directory_properties(PROPERTY VS_STARTUP_PROJECT "${PROJECT_NAME}")
