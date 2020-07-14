@@ -1,9 +1,9 @@
 #include "poole.h"
 #include <memory>
 
-std::unique_ptr<PooleEngine> engine;
+std::unique_ptr<Poole::Engine> engine;
 
 int main()
 {
-	engine = std::make_unique<PooleEngine>("Poole Engine Sandbox", glm::uvec2(640, 480));
+	engine = std::make_unique<Poole::Engine>("Poole Engine Sandbox", glm::uvec2(640, 480));
 }
