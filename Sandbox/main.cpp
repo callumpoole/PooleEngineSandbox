@@ -1,6 +1,9 @@
-#include "PooleEngine/foo_calls_bar.h"
+#include "poole.h"
+#include <memory>
+
+std::unique_ptr<PooleEngine> engine;
 
 int main()
 {
-	foo();
+	engine = std::make_unique<PooleEngine>("Poole Engine Sandbox", glm::uvec2(640, 480));
 }
