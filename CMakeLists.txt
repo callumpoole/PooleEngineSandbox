@@ -9,9 +9,11 @@ project(
 )
 
 if (MSVC)
-    add_compile_options(/W4 /WX)
+    # add_compile_options(/W4 /WX)
+    add_compile_options(/W4)
 else()
-    add_compile_options(-W -Wall -Werror)
+    # add_compile_options(-W -Wall -Werror)
+    add_compile_options(-W -Wall)
 endif()
 
 # It is always easier to navigate in an IDE when projects are organized in folders.

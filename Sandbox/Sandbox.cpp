@@ -3,8 +3,9 @@
 class Sandbox : public Poole::Engine
 {
 public:
-	Sandbox() : Engine()
+	Sandbox() : Engine("Sandbox", glm::uvec2(640, 480))
 	{
+		
 	}
 	~Sandbox()
 	{
