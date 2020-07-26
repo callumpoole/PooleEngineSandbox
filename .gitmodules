@@ -1,0 +1,4 @@
+[submodule "poole_engine"]
+	path = poole_engine
+	url = https://github.com/callumpoole/PooleEngine.git
+	branch = master
