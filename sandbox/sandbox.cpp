@@ -1,18 +1,18 @@
 #include "poole.h"
 
-class sandbox : public poole::engine
+class Sandbox : public Poole::Engine
 {
 public:
-	sandbox() : engine("Sandbox", glm::uvec2(640, 480))
+	Sandbox() : Engine("Sandbox", glm::uvec2(640, 480))
 	{
 		
 	}
-	~sandbox()
+	~Sandbox()
 	{
 	}
 };
 
-poole::engine* poole::create_application()
+Poole::Engine* Poole::CreateApplication()
 {
-	return new sandbox();
+	return new Sandbox();
 }
