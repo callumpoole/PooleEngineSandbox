@@ -1,4 +1,4 @@
-add_executable("${PROJECT_NAME}" sandbox.cpp)
+add_executable("${PROJECT_NAME}" sandbox.cpp sandbox.h)
 
 target_link_libraries("${PROJECT_NAME}" PRIVATE PooleEngine)
 

@@ -1,18 +1,18 @@
-#include "poole.h"
+#include "sandbox.h"
 
-class Sandbox : public Poole::Engine
-{
-public:
-	Sandbox() : Engine("Sandbox", glm::uvec2(640, 480))
-	{
-		
-	}
-	~Sandbox()
-	{
-	}
-};
+#include <iostream>
 
-Poole::Engine* Poole::CreateApplication()
+void Sandbox::BeginApp()
 {
-	return new Sandbox();
+	std::cout << "Sandbox::BeginApp()\n";
+}
+
+void Sandbox::UpdateApp(float deltaTime)
+{
+	std::cout << "Sandbox::UpdateApp(" << deltaTime << ")\n";
+}
+
+void Sandbox::EndApp()
+{
+	std::cout << "Sandbox::EndApp()\n";
 }
