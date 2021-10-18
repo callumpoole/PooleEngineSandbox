@@ -10,7 +10,7 @@ project(
 
 if (MSVC)
     # add_compile_options(/W4 /WX)
-    add_compile_options(/W4)
+    add_compile_options(/W4 /wd4505 /wd4201)
 else()
     # add_compile_options(-W -Wall -Werror)
     add_compile_options(-W -Wall)
