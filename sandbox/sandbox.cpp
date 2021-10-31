@@ -4,6 +4,7 @@
 #include "poole/rendering/renderer.h"
 #include "poole/rendering/renderer2D.h"
 #include "poole/rendering/rendering_primitives.h"
+#include "poole/input/input.h"
 
 static constexpr bool TempRenderSeperately = true;
 
@@ -167,10 +168,16 @@ void TempMoveTriangles()
     static float P = 0.f;
     P += 0.01f;
 
-    Mesh->m_position = { cosf(P / 5), sinf(P / 5) };
-    Mesh->m_rotation = P * 0.01f;
-    Mesh->m_scale = { (cosf(P / 25) + 2) / 3, (cosf(P / 25) + 2) / 3 };
-    Mesh->m_shear = { cosf(P), 0 };
+    //Mesh->m_position = { cosf(P / 5), sinf(P / 5) };
+    //Mesh->m_rotation = P * 0.01f;
+    //Mesh->m_scale = { (cosf(P / 25) + 2) / 3, (cosf(P / 25) + 2) / 3 };
+    //Mesh->m_shear = { cosf(P), 0 };
+
+    using namespace Poole;
+    const auto cursor = Input::GetMousePositionFloat(true, Input::ECursorClamping::None, Input::ECursorNormalization::NegativeOneToOneAspect);
+    std::cout << "Cursor Position at (" << cursor.x << " : " << cursor.y << ")\n";
+    
+    Mesh->m_position = { cursor.x, cursor.y };
 }
 
 void Sandbox::BeginApp()
