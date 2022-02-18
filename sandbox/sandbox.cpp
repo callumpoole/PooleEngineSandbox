@@ -166,36 +166,39 @@ void TempMoveTriangles()
         Renderer::GetMesh<StaticMeshNoIndiciesSolidColor4_2DTransform>(0);
 
     static float P = 0.f;
-    P += 0.01f;
-
-    //Mesh->m_position = { cosf(P / 5), sinf(P / 5) };
-    //Mesh->m_rotation = P * 0.01f;
-    //Mesh->m_scale = { (cosf(P / 25) + 2) / 3, (cosf(P / 25) + 2) / 3 };
-    //Mesh->m_shear = { cosf(P), 0 };
+    P += 0.1f;
 
     using namespace Poole;
-    const auto cursor = Input::GetMousePositionFloat(true, Input::ECursorClamping::None, Input::ECursorNormalization::NegativeOneToOneAspect);
-    std::cout << "Cursor Position at (" << cursor.x << " : " << cursor.y << ")\n";
+    const auto cursor = Input::GetMousePositionFloat(true, ECursorClamping::None, ECursorNormalization::CameraNegativeOneToOneAspect);
+
+    LOG("Cursor Position at ({},{})", cursor.x, cursor.y);
     
     Mesh->m_position = { cursor.x, cursor.y };
+    Mesh->m_scale = fvec2(0.05f);
+    Mesh->m_rotation = P;
 }
 
 void Sandbox::BeginApp()
 {
-    TestMeshNoIndiciesSolidColor();
-    TestMeshSolidColor();
-    TestMeshVertexColor();
+    //TestMeshNoIndiciesSolidColor();
+    //TestMeshSolidColor();
+    //TestMeshVertexColor();
 }
 
 void Sandbox::UpdateApp(float /*deltaTime*/)
 {
-   TempMoveTriangles();
+   //TempMoveTriangles();
 
    using namespace Poole::Rendering;
-   //Draw the triangle !
-   Renderer2D::DrawQuad({ 0, 0.f }, { 0.2f, 0.2f }, Colors::Red<fcolor4>);
-   //Draw the triangle !
-   Renderer2D::DrawQuad({ 0, 0.8f }, { 0.05f, 0.2f }, Colors::Blue<fcolor4>);
+   using namespace Poole;
+
+   const fvec2 mouseNorm = Input::GetMousePositionFloat(true, ECursorClamping::Clamp, ECursorNormalization::ZeroToOne);
+   //LOG("Mouse = {} , {}", mouseNorm.x, mouseNorm.y);
+
+   Renderer2D::DrawQuad({ 1.0, 0.f }, { 0.3f, 0.5f }, Colors::Green<fcolor4>, 0.f, fvec2(0.f));
+   Renderer2D::DrawQuad({ 0.4, 0.8f }, { 0.25f, 0.2f }, Colors::Yellow<fcolor4>, 0.f, fvec2(0.f));
+   Renderer2D::DrawCircle({ -1.0, 0.f }, { 0.5f, 1.f }, Colors::Red<fcolor4>, 0.f, fvec2(0.f), mouseNorm.x, mouseNorm.y);
+   Renderer2D::DrawCircle({ 0, 0.8f }, { 0.05f, 0.2f }, Colors::Blue<fcolor4>, 0.f, fvec2(0.f), mouseNorm.x, mouseNorm.y);
 }
 
 void Sandbox::EndApp()
