@@ -3,7 +3,7 @@
 class Sandbox : public Poole::Engine
 {
 public:
-	Sandbox() : Engine("Sandbox", uvec2(640, 480))
+	Sandbox(std::vector<std::string_view>&& commandArgs) : Engine(std::move(commandArgs), "Sandbox", uvec2(640, 480))
 	{
 	}
 	~Sandbox()
@@ -15,7 +15,7 @@ public:
 	virtual void EndApp() override;
 };
 
-Poole::Engine* Poole::CreateApplication()
+Poole::Engine* Poole::CreateApplication(std::vector<std::string_view>&& commandArgs)
 {
-	return new Sandbox();
+	return new Sandbox(std::move(commandArgs));
 }

@@ -178,8 +178,14 @@ void TempMoveTriangles()
     Mesh->m_rotation = P;
 }
 
+Poole::Rendering::TextureHandle textureHandle;
+
 void Sandbox::BeginApp()
 {
+    //I know abs paths are not ideal for github, this is temp! And it's in a sandbox project anyways!
+    //textureHandle = Poole::Rendering::Renderer2D::LoadTexture("D:/Callum/Desktop/testTexture.png"); //RGB only!
+    textureHandle = Poole::Rendering::Renderer2D::LoadTexture("D:/Callum/Desktop/testTextureRGBA.png");
+
     //TestMeshNoIndiciesSolidColor();
     //TestMeshSolidColor();
     //TestMeshVertexColor();
@@ -196,8 +202,10 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
    //LOG("Mouse = {} , {}", mouseNorm.x, mouseNorm.y);
 
    Renderer2D::DrawQuad({ 1.0, 0.f }, { 0.3f, 0.5f }, Colors::Green<fcolor4>, 0.f, fvec2(0.f));
-   Renderer2D::DrawQuad({ 0.4, 0.8f }, { 0.25f, 0.2f }, Colors::Yellow<fcolor4>, 0.f, fvec2(0.f));
    Renderer2D::DrawCircle({ -1.0, 0.f }, { 0.5f, 1.f }, Colors::Red<fcolor4>, 0.f, fvec2(0.f), mouseNorm.x, mouseNorm.y);
+   Renderer2D::DrawTexturedQuad({ 0.0, 0.f }, { 0.5f, 0.5f }, textureHandle);
+   Renderer2D::DrawQuad({ 0.4, 0.8f }, { 0.25f, 0.2f }, Colors::Yellow<fcolor4>, 0.f, fvec2(0.f));
+   Renderer2D::DrawTexturedQuad({ 0.7f, 0.7f }, { 0.25f, 0.25f }, textureHandle);
    Renderer2D::DrawCircle({ 0, 0.8f }, { 0.05f, 0.2f }, Colors::Blue<fcolor4>, 0.f, fvec2(0.f), mouseNorm.x, mouseNorm.y);
 }
 
