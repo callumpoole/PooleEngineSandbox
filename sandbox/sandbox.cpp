@@ -206,9 +206,9 @@ void Sandbox::BeginApp()
  
 #undef IMAGE_PATH
 
-    sub1.reset(Poole::Rendering::SubImage::Create(spriteSheet, {3,5}, {16,16}));
-    sub2.reset(Poole::Rendering::SubImage::Create(spriteSheet, {3,4}, {16,16}));
-    sub3.reset(Poole::Rendering::SubImage::Create(spriteSheet, {2,4}, {16,16}));
+    sub1.reset(Poole::Rendering::SubImage::Create(spriteSheet, { 8,8}, {16,16}));
+    sub2.reset(Poole::Rendering::SubImage::Create(spriteSheet, { 9,8}, {16,16}));
+    sub3.reset(Poole::Rendering::SubImage::Create(spriteSheet, {10,8}, {16,16}));
     
 
     //TestMeshNoIndiciesSolidColor();
@@ -238,7 +238,7 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
 //
 //  Renderer2D::DrawCircle({ -1.0, 0.f }, { 0.5f, 1.f }, Colors::Red<fcolor4>, 0.f, fvec2(0.f), mouseNorm.x, mouseNorm.y);
 //  Renderer2D::DrawCircle({ 0, 0.8f }, { 0.05f, 0.2f }, Colors::Blue<fcolor4>, 0.f, fvec2(0.f), mouseNorm.x, mouseNorm.y);
-//
+
 //  Renderer2D::DrawSubTexturedQuad({ -0.75f, 0.75f }, { 0.125f, 0.125f }, *sub1);
 //  Renderer2D::DrawSubTexturedQuad({ -0.75f, 0.50f }, { 0.125f, 0.125f }, *sub2);
 //  Renderer2D::DrawSubTexturedQuad({ -1.00f, 0.50f }, { 0.125f, 0.125f }, *sub3);
@@ -255,28 +255,11 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
     BatchedRenderer2D::DrawTexturedQuad({ 0.0, 0.f }, { 0.5f, 0.5f }, textureHandle);
     BatchedRenderer2D::DrawTexturedQuad({ 0.9f, 0.7f }, { 0.25f, 0.25f }, textureHandle2);
     BatchedRenderer2D::DrawTexturedQuad({ -0.9f, -0.7f }, { 0.25f, 0.25f }, textureHandle3);
-    BatchedRenderer2D::DrawTexturedQuad({ 0.8f, -0.7f }, { 1.f, 1.f }, *spriteSheet);
+    BatchedRenderer2D::DrawTexturedQuad({ 0.8f, -0.7f }, { 0.2f, 0.2f }, *spriteSheet);
 
-    constexpr float xtile = 1 / 12.f;
-    constexpr float ytile = 1 / 10.f;
-    {
-        constexpr float x = 8 * xtile;
-        constexpr float y = 8 * ytile;
-        constexpr fvec2 textureCoords[] = { { x, y }, { x + xtile, y }, { x + xtile, y + ytile }, { x, y + ytile } };
-        BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ { -1.f, 0 }, { 1.f, 1.0f }, 0 }, BatchedRenderer2D::GetOrLoadTexture(*spriteSheet), textureCoords);
-    }
-    {
-        constexpr float x = 9 * xtile;
-        constexpr float y = 8 * ytile;
-        constexpr fvec2 textureCoords[] = { { x, y }, { x + xtile, y }, { x + xtile, y + ytile }, { x, y + ytile } };
-        BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ { 0, 0 }, { 1.f, 1.0f }, 0 }, BatchedRenderer2D::GetOrLoadTexture(*spriteSheet), textureCoords);
-    }
-    {
-        constexpr float x = 10 * xtile;
-        constexpr float y = 8 * ytile;
-        constexpr fvec2 textureCoords[] = { { x, y }, { x + xtile, y }, { x + xtile, y + ytile }, { x, y + ytile } };
-        BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ { 1.f, 0 }, { 1.f, 1.0f }, 0 }, BatchedRenderer2D::GetOrLoadTexture(*spriteSheet), textureCoords);
-    }
+    BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ { -1.f, 0 }, { 1.f, 1.0f }, 0 }, *sub1);
+    BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ {  0.f, 0 }, { 1.f, 1.0f }, 0 }, *sub2);
+    BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ {  1.f, 0 }, { 1.f, 1.0f }, 0 }, *sub3);
 }
 
 void Sandbox::EndApp()
