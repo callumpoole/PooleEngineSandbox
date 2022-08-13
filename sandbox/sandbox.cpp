@@ -225,8 +225,7 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
 
     const fvec2 mouseNorm = Input::GetMousePositionFloat(true, ECursorClamping::Clamp, ECursorNormalization::ZeroToOne);
     //LOG("Mouse = {} , {}", mouseNorm.x, mouseNorm.y);
-
-//  Renderer2D::DrawQuad({ 1.0, 0.f }, { 0.3f, 0.5f }, Colors::Green<fcolor4>, 0.f, fvec2(0.f));
+//   Renderer2D::DrawQuad({ 1.0, 0.f }, { 0.3f, 0.5f }, Colors::Green<fcolor4>, 0.f, fvec2(0.f));
 //  Renderer2D::DrawQuad({ 0.4, 0.8f }, { 0.25f, 0.2f }, Colors::Yellow<fcolor4>, 0.f, fvec2(0.f));
 //  Renderer2D::DrawQuad({ 0.0, -0.7f }, { 0.1f, 0.1f }, Colors::Cyan<fcolor4>, 0.f, fvec2(0.f));
 //  Renderer2D::DrawQuad({ 0.5f, -0.7f }, { 0.2f, 0.1f }, Colors::Purple<fcolor4>, 0.f, fvec2(0.f));
@@ -243,23 +242,40 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
 //  Renderer2D::DrawSubTexturedQuad({ -0.75f, 0.50f }, { 0.125f, 0.125f }, *sub2);
 //  Renderer2D::DrawSubTexturedQuad({ -1.00f, 0.50f }, { 0.125f, 0.125f }, *sub3);
 
+    
+
+    constexpr i32 gridSize = 10;
+    constexpr i32 halfGridSize = gridSize/2;
+    for (i32 y = -halfGridSize; y < halfGridSize; y++)
+    {
+        for (i32 x = -halfGridSize; x < halfGridSize; x++)
+        {
+            //Renderer2D::DrawTexturedQuad({ x / 10.f, y / 10.f }, { 0.05f, 0.05f }, *spriteSheet);
+            //BatchedRenderer2D::DrawTexturedQuad({ x / 10.f, y / 10.f }, { 0.1f, 0.1f }, *spriteSheet);
+
+            //BatchedRenderer2D::DrawQuad({ x/10.f, y/10.f }, { 0.1f, 0.1f }, fcolor4((x + halfGridSize) / (float)gridSize, (y + halfGridSize) / (float)gridSize,0,1));
+            Renderer2D::DrawQuad({ x / 10.f, y / 10.f }, { 0.05f, 0.05f }, fcolor4((x + halfGridSize) / (float)gridSize, (y + halfGridSize) / (float)gridSize, 0, 1));
+        }
+    }
+    
+    //BatchedRenderer2D::DrawQuad({ 1.0, 0.f }, { 1.f, 1.f }, Colors::Green<fcolor4>);
+    //BatchedRenderer2D::DrawQuad({ 0.0, 0.f }, { 1.f, 1.f }, Colors::Green<fcolor4>);
+    //BatchedRenderer2D::DrawQuad({ -1.0, 0.f }, { 1.f, 1.f }, Colors::Green<fcolor4>);
 
 
-
-
-    BatchedRenderer2D::DrawQuad({ 1.0, 0.f }, { 0.3f, 0.5f }, Colors::Green<fcolor4>);
-    BatchedRenderer2D::DrawQuad({ 0.4, 0.8f }, { 0.25f, 0.2f }, Colors::Yellow<fcolor4>);
-    BatchedRenderer2D::DrawQuad({ 0.0, -0.7f }, { 0.1f, 0.1f }, Colors::Cyan<fcolor4>);
-    BatchedRenderer2D::DrawQuad({ 0.5f, -0.7f }, { 0.2f, 0.1f }, Colors::Purple<fcolor4>);
-
-    BatchedRenderer2D::DrawTexturedQuad({ 0.0, 0.f }, { 0.5f, 0.5f }, textureHandle);
-    BatchedRenderer2D::DrawTexturedQuad({ 0.9f, 0.7f }, { 0.25f, 0.25f }, textureHandle2);
-    BatchedRenderer2D::DrawTexturedQuad({ -0.9f, -0.7f }, { 0.25f, 0.25f }, textureHandle3);
-    BatchedRenderer2D::DrawTexturedQuad({ 0.8f, -0.7f }, { 0.2f, 0.2f }, *spriteSheet);
-
-    BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ { -1.f, 0 }, { 1.f, 1.0f }, 0 }, *sub1);
-    BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ {  0.f, 0 }, { 1.f, 1.0f }, 0 }, *sub2);
-    BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ {  1.f, 0 }, { 1.f, 1.0f }, 0 }, *sub3);
+    //BatchedRenderer2D::DrawQuad({ 1.0, 0.f }, { 0.3f, 0.5f }, Colors::Green<fcolor4>);
+    //BatchedRenderer2D::DrawQuad({ 0.4, 0.8f }, { 0.25f, 0.2f }, Colors::Yellow<fcolor4>);
+    //BatchedRenderer2D::DrawQuad({ 0.0, -0.7f }, { 0.1f, 0.1f }, Colors::Cyan<fcolor4>);
+    //BatchedRenderer2D::DrawQuad({ 0.5f, -0.7f }, { 0.2f, 0.1f }, Colors::Purple<fcolor4>);
+    //
+    //BatchedRenderer2D::DrawTexturedQuad({ 0.0, 0.f }, { 0.5f, 0.5f }, textureHandle);
+    //BatchedRenderer2D::DrawTexturedQuad({ 0.9f, 0.7f }, { 0.25f, 0.25f }, textureHandle2);
+    //BatchedRenderer2D::DrawTexturedQuad({ -0.9f, -0.7f }, { 0.25f, 0.25f }, textureHandle3);
+    //BatchedRenderer2D::DrawTexturedQuad({ 0.8f, -0.7f }, { 0.2f, 0.2f }, *spriteSheet);
+    //
+    //BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ { -1.f, 0 }, { 1.f, 1.0f }, 0 }, *sub1);
+    //BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ {  0.f, 0 }, { 1.f, 1.0f }, 0 }, *sub2);
+    //BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ {  1.f, 0 }, { 1.f, 1.0f }, 0 }, *sub3);
 }
 
 void Sandbox::EndApp()
