@@ -225,7 +225,7 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
 
     const fvec2 mouseNorm = Input::GetMousePositionFloat(true, ECursorClamping::Clamp, ECursorNormalization::ZeroToOne);
     //LOG("Mouse = {} , {}", mouseNorm.x, mouseNorm.y);
-//   Renderer2D::DrawQuad({ 1.0, 0.f }, { 0.3f, 0.5f }, Colors::Green<fcolor4>, 0.f, fvec2(0.f));
+//  Renderer2D::DrawQuad({ 1.0, 0.f }, { 0.3f, 0.5f }, Colors::Green<fcolor4>, 0.f, fvec2(0.f));
 //  Renderer2D::DrawQuad({ 0.4, 0.8f }, { 0.25f, 0.2f }, Colors::Yellow<fcolor4>, 0.f, fvec2(0.f));
 //  Renderer2D::DrawQuad({ 0.0, -0.7f }, { 0.1f, 0.1f }, Colors::Cyan<fcolor4>, 0.f, fvec2(0.f));
 //  Renderer2D::DrawQuad({ 0.5f, -0.7f }, { 0.2f, 0.1f }, Colors::Purple<fcolor4>, 0.f, fvec2(0.f));
@@ -235,8 +235,11 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
 //  Renderer2D::DrawTexturedQuad({ -0.9f, -0.7f }, { 0.25f, 0.25f }, textureHandle3);
 //  Renderer2D::DrawTexturedQuad({ 0.8f, -0.7f }, { 0.2f, 0.2f }, *spriteSheet);
 //
-//  Renderer2D::DrawCircle({ -1.0, 0.f }, { 0.5f, 1.f }, Colors::Red<fcolor4>, 0.f, fvec2(0.f), mouseNorm.x, mouseNorm.y);
-//  Renderer2D::DrawCircle({ 0, 0.8f }, { 0.05f, 0.2f }, Colors::Blue<fcolor4>, 0.f, fvec2(0.f), mouseNorm.x, mouseNorm.y);
+    BatchedRenderer2D::DrawCircle({ -1.0, 0.f }, { 1.f, 2.f }, Colors::Red<fcolor4> * 0.5f);
+    BatchedRenderer2D::DrawCircle({ 0, 0.8f }, { 0.1f, 0.4f }, Colors::Blue<fcolor4> * 0.5f);
+
+    Renderer2D::DrawCircle({ -1.0, 0.f }, { 0.5f, 1.f }, Colors::Red<fcolor4>, 0.f, fvec2(0.f), mouseNorm.x, mouseNorm.y);
+    Renderer2D::DrawCircle({ 0, 0.8f }, { 0.05f, 0.2f }, Colors::Blue<fcolor4>, 0.f, fvec2(0.f), mouseNorm.x, mouseNorm.y);
 
 //  Renderer2D::DrawSubTexturedQuad({ -0.75f, 0.75f }, { 0.125f, 0.125f }, *sub1);
 //  Renderer2D::DrawSubTexturedQuad({ -0.75f, 0.50f }, { 0.125f, 0.125f }, *sub2);
@@ -254,7 +257,7 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
             //BatchedRenderer2D::DrawTexturedQuad({ x / 10.f, y / 10.f }, { 0.1f, 0.1f }, *spriteSheet);
 
             //BatchedRenderer2D::DrawQuad({ x/10.f, y/10.f }, { 0.1f, 0.1f }, fcolor4((x + halfGridSize) / (float)gridSize, (y + halfGridSize) / (float)gridSize,0,1));
-            Renderer2D::DrawQuad({ x / 10.f, y / 10.f }, { 0.05f, 0.05f }, fcolor4((x + halfGridSize) / (float)gridSize, (y + halfGridSize) / (float)gridSize, 0, 1));
+            //Renderer2D::DrawQuad({ x / 10.f, y / 10.f }, { 0.05f, 0.05f }, fcolor4((x + halfGridSize) / (float)gridSize, (y + halfGridSize) / (float)gridSize, 0, 1));
         }
     }
     
@@ -276,6 +279,7 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
     //BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ { -1.f, 0 }, { 1.f, 1.0f }, 0 }, *sub1);
     //BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ {  0.f, 0 }, { 1.f, 1.0f }, 0 }, *sub2);
     //BatchedRenderer2D::DrawSubTexturedQuad(ftransform2D{ {  1.f, 0 }, { 1.f, 1.0f }, 0 }, *sub3);
+
 }
 
 void Sandbox::EndApp()
