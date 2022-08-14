@@ -8,6 +8,8 @@
 
 #include "poole/rendering/image/image.h"
 #include "poole/rendering/image/sub_image.h"
+#include "poole/rendering/text/render_text.h"
+#include "poole/rendering/text/render_text_factory.h"
 
 Poole::Rendering::Image textureHandle;
 Poole::Rendering::Image textureHandle2;
@@ -16,6 +18,8 @@ std::shared_ptr<Poole::Rendering::Image> spriteSheet;
 std::shared_ptr<Poole::Rendering::SubImage> sub1;
 std::shared_ptr<Poole::Rendering::SubImage> sub2;
 std::shared_ptr<Poole::Rendering::SubImage> sub3;
+
+std::shared_ptr<Poole::Rendering::RenderText> testText1;
 
 void Sandbox::BeginApp()
 {
@@ -29,12 +33,16 @@ void Sandbox::BeginApp()
     textureHandle3 = Poole::Rendering::Image(IMAGE_PATH "Gary_Redford_95_MJN.jpg");
     
     spriteSheet.reset(new Poole::Rendering::Image(IMAGE_PATH "spriteSheet.png"));
- 
 #undef IMAGE_PATH
+ 
 
-    sub1.reset(Poole::Rendering::SubImage::Create(spriteSheet, { 8,8}, {16,16}));
-    sub2.reset(Poole::Rendering::SubImage::Create(spriteSheet, { 9,8}, {16,16}));
-    sub3.reset(Poole::Rendering::SubImage::Create(spriteSheet, {10,8}, {16,16}));
+    sub1.reset(new Poole::Rendering::SubImage(spriteSheet, { 8,1}, {16,16}));
+    sub2.reset(new Poole::Rendering::SubImage(spriteSheet, { 9,1}, {16,16}));
+    sub3.reset(new Poole::Rendering::SubImage(spriteSheet, {10,1}, {16,16}));
+
+    using namespace Poole::Rendering;
+    testText1 = RenderTextFactory::MakeRenderText();
+    testText1->SetSize(0.1f);
 }
 
 void Sandbox::UpdateApp(float /*deltaTime*/)
@@ -78,6 +86,10 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
     
     Renderer2D::DrawCircle({ -1.f, 0.0f }, {  0.5f, 1.0f }, Colors::Red<fcolor4>, 0, fvec2(0.f), mouseNorm.x, mouseNorm.y);
     Renderer2D::DrawCircle({  0.f, 0.8f }, { 0.05f, 0.2f }, Colors::Blue<fcolor4>, 0, fvec2(0.f), mouseNorm.x, mouseNorm.y);
+
+    //Renderer2D::DrawSubTexturedQuad({ -1.00f, 0.75f }, { 0.25f, 0.25f }, *RenderTextFactory::DefaultFont->Convert('C'));
+
+    testText1->SetText("Callum");
 }
 
 void Sandbox::EndApp()
