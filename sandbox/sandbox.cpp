@@ -8,8 +8,8 @@
 
 #include "poole/rendering/image/image.h"
 #include "poole/rendering/image/sub_image.h"
-#include "poole/rendering/text/render_text.h"
-#include "poole/rendering/text/render_text_factory.h"
+#include "poole/rendering/text/text_renderer.h"
+#include "poole/rendering/text/text_renderer_factory.h"
 
 Poole::Rendering::Image textureHandle;
 Poole::Rendering::Image textureHandle2;
@@ -19,7 +19,7 @@ std::shared_ptr<Poole::Rendering::SubImage> sub1;
 std::shared_ptr<Poole::Rendering::SubImage> sub2;
 std::shared_ptr<Poole::Rendering::SubImage> sub3;
 
-std::shared_ptr<Poole::Rendering::RenderText> testText1;
+std::shared_ptr<Poole::Rendering::TextRenderer> testText1;
 
 void Sandbox::BeginApp()
 {
@@ -40,9 +40,9 @@ void Sandbox::BeginApp()
     sub2.reset(new Poole::Rendering::SubImage(spriteSheet, { 9,1}, {16,16}));
     sub3.reset(new Poole::Rendering::SubImage(spriteSheet, {10,1}, {16,16}));
 
-    using namespace Poole::Rendering;
-    testText1 = RenderTextFactory::MakeRenderText();
+    testText1 = Poole::Rendering::TextRendererFactory::MakeRenderText();
     testText1->SetSize(0.1f);
+    testText1->SetText("Callum");
 }
 
 void Sandbox::UpdateApp(float /*deltaTime*/)
@@ -89,7 +89,7 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
 
     //Renderer2D::DrawSubTexturedQuad({ -1.00f, 0.75f }, { 0.25f, 0.25f }, *RenderTextFactory::DefaultFont->Convert('C'));
 
-    testText1->SetText("Callum");
+    
 }
 
 void Sandbox::EndApp()
