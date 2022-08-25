@@ -8,10 +8,12 @@
 
 #include "poole/rendering/image/image.h"
 #include "poole/rendering/image/image_utils.h"
-#include "poole/rendering/image/svg.h"
 #include "poole/rendering/image/sub_image.h"
+#include "poole/rendering/text/svg_font_renderer.h"
 #include "poole/rendering/text/text_renderer.h"
 #include "poole/rendering/text/text_renderer_factory.h"
+
+#include "poole/core/core_logging.h"
 
 Poole::Rendering::Image textureHandle;
 Poole::Rendering::Image textureHandle2;
@@ -43,12 +45,20 @@ void Sandbox::BeginApp()
     spriteSheet.reset(new Image(IMAGE_PATH "spriteSheet.png"));
 #undef IMAGE_PATH
  
-    Image GreyscaleFont = Image((u8*)SVG::GetBytes(), 512, 512, 1, true, true);
-    //GreyscaleFont = Image((u8*)GreyscaleFont.YFlipBytes().data(), 512, 512, 1, true, true);
-    
-    fontSheet = ImageUtils::GreyscaleToRGBA(&GreyscaleFont);
+    Poole::Rendering::SvgFontRenderer* s = new Poole::Rendering::SvgFontRenderer("asd");
+  
 
-    sub1.reset(new SubImage(spriteSheet, { 8,1}, {16,16}));
+  
+
+  
+
+    //Image GreyscaleFont = Image((u8*)SVG::GetBytes(), 512, 512, 1, true, true);
+    ////GreyscaleFont = Image((u8*)GreyscaleFont.YFlipBytes().data(), 512, 512, 1, true, true);
+    //
+    //fontSheet = ImageUtils::GreyscaleToRGBA(ImageUtils::YFlip(&GreyscaleFont));
+
+    //sub1.reset(new SubImage(spriteSheet, { 8,1}, {16,16}));
+    sub1 = s->Convert('A', 70);
     sub2.reset(new SubImage(spriteSheet, { 9,1}, {16,16}));
     sub3.reset(new SubImage(spriteSheet, {10,1}, {16,16}));
 
@@ -98,7 +108,7 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
     Renderer2D::DrawQuad({ 0.0, -0.7f }, { 0.1f, 0.1f }, Colors::Cyan<fcolor4>);
     Renderer2D::DrawQuad({ 0.5f, -0.7f }, { 0.2f, 0.1f }, Colors::Purple<fcolor4>);
     
-    Renderer2D::DrawTexturedQuad({ 0.0, 0.f }, { 0.5f, 0.5f }, *fontSheet);
+    Renderer2D::DrawTexturedQuad({ 0.0, 0.f }, { 0.5f, 0.5f }, textureHandle);
     Renderer2D::DrawTexturedQuad({ 0.9f, 0.7f }, { 0.25f, 0.25f }, textureHandle2);
     Renderer2D::DrawTexturedQuad({ -0.9f, -0.7f }, { 0.25f, 0.25f }, textureHandle3);
     Renderer2D::DrawTexturedQuad({ -0.9f, -0.1f }, { 0.25f, 0.25f }, *textureHandle3GreyScaleRGBA);
