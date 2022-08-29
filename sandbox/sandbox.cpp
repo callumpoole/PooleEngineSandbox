@@ -40,12 +40,13 @@ void Sandbox::BeginApp()
 
     textureHandle3 = Image(IMAGE_PATH "Gary_Redford_95_MJN.jpg");
 
+
     textureHandle3GreyScaleRGBA = ImageUtils::ToGreyscaleRGBA(&textureHandle3);
     
     spriteSheet.reset(new Image(IMAGE_PATH "spriteSheet.png"));
 #undef IMAGE_PATH
  
-    Poole::Rendering::SvgFontRenderer* s = new Poole::Rendering::SvgFontRenderer("asd");
+    //Poole::Rendering::SvgFontRenderer* s = new Poole::Rendering::SvgFontRenderer("asd");
   
 
   
@@ -57,15 +58,16 @@ void Sandbox::BeginApp()
     //
     //fontSheet = ImageUtils::GreyscaleToRGBA(ImageUtils::YFlip(&GreyscaleFont));
 
-    //sub1.reset(new SubImage(spriteSheet, { 8,1}, {16,16}));
-    sub1 = s->Convert('A', 70);
+    sub1.reset(new SubImage(spriteSheet, { 8,1}, {16,16}));
+    //sub1 = s->Convert('A', 70);
     sub2.reset(new SubImage(spriteSheet, { 9,1}, {16,16}));
     sub3.reset(new SubImage(spriteSheet, {10,1}, {16,16}));
 
-    testText1 = TextRendererFactory::MakeRenderText();
-    testText1->SetSize(0.1f);
+    testText1 = TextRendererFactory::MakeRenderText(false);
+    testText1->SetPosition({ -0.5, 0.5, 0 });
+    testText1->SetSize(0.15f);
     testText1->SetTextView(
-        "Callum\n"
+        "Callum Donald Poole\n"
         "Can\n"
         "Now\n"
         "Do\n"
@@ -86,29 +88,30 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
     testText1->SetRotationRadians(3.1415926535 * mouseNorm.x * 2);
     testText1->SetShadowOffset(fvec2{ 0.05f, -0.05f } * 10.f * mouseNorm.y);
 
-    constexpr i32 gridSize = 10;
-    constexpr i32 halfGridSize = gridSize/2;
-    for (i32 y = -halfGridSize; y < halfGridSize; y++)
-    {
-        for (i32 x = -halfGridSize; x < halfGridSize; x++)
-        {
-            if ((x + y) % 2 == 0)
-            {
-                Renderer2D::DrawTexturedQuad({ x / 10.f, y / 10.f }, { 0.1f, 0.1f }, textureHandle2);
-            }
-            else
-            {
-                Renderer2D::DrawQuad({ x/10.f, y/10.f }, { 0.1f, 0.1f }, fcolor4(0, (y + halfGridSize) / (float)gridSize, (x + halfGridSize) / (float)gridSize,1));
-            }
-        }
-    }
+//    constexpr i32 gridSize = 10;
+//    constexpr i32 halfGridSize = gridSize/2;
+//    for (i32 y = -halfGridSize; y < halfGridSize; y++)
+//    {
+//        for (i32 x = -halfGridSize; x < halfGridSize; x++)
+//        {
+//            if ((x + y) % 2 == 0)
+//            {
+//                Renderer2D::DrawTexturedQuad({ x / 10.f, y / 10.f }, { 0.1f, 0.1f }, textureHandle2);
+//            }
+//            else
+//            {
+//                Renderer2D::DrawQuad({ x/10.f, y/10.f }, { 0.1f, 0.1f }, fcolor4(0, (y + halfGridSize) / (float)gridSize, (x + halfGridSize) / (float)gridSize,1));
+//            }
+//        }
+//    }
 
     Renderer2D::DrawQuad({ 1.0, 0.f }, { 0.3f, 0.5f }, Colors::Green<fcolor4>);
     Renderer2D::DrawQuad({ 0.4, 0.8f }, { 0.25f, 0.2f }, Colors::Yellow<fcolor4>);
     Renderer2D::DrawQuad({ 0.0, -0.7f }, { 0.1f, 0.1f }, Colors::Cyan<fcolor4>);
     Renderer2D::DrawQuad({ 0.5f, -0.7f }, { 0.2f, 0.1f }, Colors::Purple<fcolor4>);
+
     
-    Renderer2D::DrawTexturedQuad({ 0.0, 0.f }, { 0.5f, 0.5f }, textureHandle);
+//    Renderer2D::DrawTexturedQuad({ 0.0, 0.f }, { 0.5f, 0.5f }, textureHandle);
     Renderer2D::DrawTexturedQuad({ 0.9f, 0.7f }, { 0.25f, 0.25f }, textureHandle2);
     Renderer2D::DrawTexturedQuad({ -0.9f, -0.7f }, { 0.25f, 0.25f }, textureHandle3);
     Renderer2D::DrawTexturedQuad({ -0.9f, -0.1f }, { 0.25f, 0.25f }, *textureHandle3GreyScaleRGBA);
@@ -124,6 +127,8 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
     //Renderer2D::DrawSubTexturedQuad({ -1.00f, 0.75f }, { 0.25f, 0.25f }, *RenderTextFactory::DefaultFont->Convert('C'));
 
     
+//    std::shared_ptr<Image> Image = TextRendererFactory::GetVariableFontImage(70.f);
+ //   Renderer2D::DrawTexturedQuad({ 0.0, 0.f }, { 0.5f, 0.5f }, *Image);
 }
 
 void Sandbox::EndApp()
