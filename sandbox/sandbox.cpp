@@ -71,7 +71,8 @@ void Sandbox::BeginApp()
         "Can\n"
         "Now\n"
         "Do\n"
-        "Mutli-line!"
+        "Mutli-line!\n"
+        "a-L-m._!\"$%^&*()'~@[]{}-=+?/\\|`"
     );
     testText1->SetColor(Colors::Red<fcolor4>);
     
