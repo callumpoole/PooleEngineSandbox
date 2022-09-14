@@ -65,7 +65,7 @@ void Sandbox::BeginApp()
 
     testText1 = TextRendererFactory::MakeRenderText(false);
     testText1->SetPosition({ -0.5, 0.5, 0 });
-    testText1->SetSize(0.15f);
+    testText1->SetSize(0.25f);
     testText1->SetTextView(
         "Callum Donald Poole\n"
         "Can\n"
