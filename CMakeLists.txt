@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.17)
 cmake_policy(SET CMP0048 NEW)
 
 project(
-	PooleEngineSandbox 
+	PooleEngineSudoku 
 	VERSION 0.0.0 
 	LANGUAGES CXX
 )
@@ -20,7 +20,7 @@ endif()
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 add_subdirectory(poole_engine)
-add_subdirectory(sandbox)
+add_subdirectory(sudoku)
 
 # Setup our project as the startup project for Visual so that people don't need to do it manually
 set_directory_properties(PROPERTY VS_STARTUP_PROJECT "${PROJECT_NAME}")
