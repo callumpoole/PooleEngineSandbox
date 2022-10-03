@@ -1,12 +1,12 @@
 #include "poole.h"
 
-class Sudoku : public Poole::Engine
+class Sandbox : public Poole::Engine
 {
 public:
-	Sudoku(std::vector<std::string_view>&& commandArgs) : Engine(std::move(commandArgs), "Sandbox", uvec2(640, 480))
+	Sandbox(std::vector<std::string_view>&& commandArgs) : Engine(std::move(commandArgs), "Sandbox", uvec2(640, 480))
 	{
 	}
-	~Sudoku()
+	~Sandbox()
 	{
 	}
 
@@ -17,5 +17,5 @@ public:
 
 Poole::Engine* Poole::CreateApplication(std::vector<std::string_view>&& commandArgs)
 {
-	return new Sudoku(std::move(commandArgs));
+	return new Sandbox(std::move(commandArgs));
 }
