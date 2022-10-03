@@ -9,7 +9,6 @@
 #include "poole/rendering/image/image.h"
 #include "poole/rendering/image/image_utils.h"
 #include "poole/rendering/image/sub_image.h"
-#include "poole/rendering/text/svg_font_renderer.h"
 #include "poole/rendering/text/text_renderer.h"
 #include "poole/rendering/text/text_renderer_factory.h"
 
@@ -29,7 +28,6 @@ std::shared_ptr<Poole::Rendering::SubImage> sub2;
 std::shared_ptr<Poole::Rendering::SubImage> sub3;
 
 std::shared_ptr<Poole::Rendering::TextRenderer> testText1;
-Poole::Rendering::Image* fontSheet;
 
 void Sandbox::BeginApp()
 {
@@ -74,9 +72,6 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
     const fvec2 mouseNorm = Input::GetMousePositionFloat(true, ECursorClamping::Clamp, ECursorNormalization::ZeroToOne);
     //LOG("Mouse = {} , {}", mouseNorm.x, mouseNorm.y);
 
-    testText1->SetRotationRadians(3.1415926535f * mouseNorm.x * 2.f);
-    testText1->SetShadowOffset(fvec2{ 0.05f, -0.05f } * 10.f * mouseNorm.y);
-
 #if 0
     constexpr i32 gridSize = 10;
     constexpr i32 halfGridSize = gridSize/2;
@@ -96,9 +91,8 @@ void Sandbox::UpdateApp(float /*deltaTime*/)
     }
 #endif
 
-//    Renderer2D::DrawTexturedQuad({ -1.f, 0.0f }, { 0.5f, 0.5f }, *oddWidth);
-//    Renderer2D::DrawTexturedQuad({  1.f, 0.0f }, { 0.5f, 0.5f }, *oddHeight);
-//    Renderer2D::DrawTexturedQuad({ 0.f, 0.f }, { 0.5f, 0.5f }, *textureHandle2);
+    testText1->SetRotationRadians(3.1415926535f * mouseNorm.x * 2.f);
+    testText1->SetShadowOffset(fvec2{ 0.05f, -0.05f } * 10.f * mouseNorm.y);
 
     Renderer2D::DrawQuad({ 1.0, 0.f }, { 0.3f, 0.5f }, Colors::Green<fcolor4>);
     Renderer2D::DrawQuad({ 0.4, 0.8f }, { 0.25f, 0.2f }, Colors::Yellow<fcolor4>);
