@@ -22,7 +22,6 @@
 
 std::shared_ptr<Poole::BoxCollider2D> box1;
 std::shared_ptr<Poole::BoxCollider2D> box2;
-//std::shared_ptr<Poole::BoxCollider2D> box3;
 std::shared_ptr<Poole::CircleCollider2D> circle1;
 std::shared_ptr<Poole::CircleCollider2D> circle2;
 
@@ -31,12 +30,11 @@ void Sandbox::BeginApp()
     //RendererTesting::Init();
     //FontTesting::Init();
 
-    box1 = Poole::ColliderManager2D::MakeCollider<Poole::BoxCollider2D>(fvec2{  0.2, 0.5 }, fvec2{ 0.25, 0.1 }, PI / 3);
+    box1 = Poole::ColliderManager2D::MakeCollider<Poole::BoxCollider2D>(fvec2{  0.4, 0.4 }, fvec2{ 0.4, 0.4 }, PI / 3);
     box2 = Poole::ColliderManager2D::MakeCollider<Poole::BoxCollider2D>(fvec2{ -0.4, 0.8 }, fvec2{ 0.1, 0.35 }, PI / 8);
-//    box3 = Poole::ColliderManager2D::MakeCollider<Poole::BoxCollider2D>(fvec2{ 0.4, -0.8 }, fvec2{ 0.15, 0.3 }, -PI / 8);
 
     circle1 = Poole::ColliderManager2D::MakeCollider<Poole::CircleCollider2D>(fvec2{ -0.2, -0.5 }, 0.1f);
-    circle2 = Poole::ColliderManager2D::MakeCollider<Poole::CircleCollider2D>(fvec2{ -0.9, 0.8 }, 0.2f);
+    circle2 = Poole::ColliderManager2D::MakeCollider<Poole::CircleCollider2D>(fvec2{ -0.9, 0.8 }, 0.1f);
 }
 
 float aa = 0.0f;
@@ -53,11 +51,9 @@ void Sandbox::UpdateApp(float deltaTime)
 
     box1->DebugDraw();
     box2->DebugDraw();
-    //box3->DebugDraw();
 
 
     static_cast<BoxCollider2D*>(box2.get())->SetPosition(mouseToScene);
-//    static_cast<BoxCollider2D*>(box3.get())->SetPosition(mouseToScene + fvec2{-0.8f, 0.8f});
 
     aa += deltaTime / 10.f;
     bb += deltaTime / 20.f;
